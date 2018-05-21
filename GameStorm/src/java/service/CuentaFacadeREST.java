@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package service;
 
 import java.util.List;
@@ -23,8 +22,9 @@ import modelo.Cuenta;
 
 /**
  * Descripcion
+ *
  * @author Cristhian Ubaldo Promotor
- * @version fecha 
+ * @version fecha
  */
 @Stateless
 @Path("modelo.cuenta")
@@ -83,6 +83,20 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
     @Produces(MediaType.TEXT_PLAIN)
     public String countREST() {
         return String.valueOf(super.count());
+    }
+
+    @GET
+    @Path("{nombreUsuario}/{contraseña}")
+    public boolean encontrarUsuario(@PathParam("nombreUsuario") String nombreUsuario, @PathParam("contraseña") String contraseña) {
+        boolean usuarioCorrecto = false;
+        Cuenta UsuarioEsperado = find(nombreUsuario);
+
+        if (UsuarioEsperado != null) {
+            if (UsuarioEsperado.getContrasena().equals(contraseña)) {
+                usuarioCorrecto = true;
+            }
+        }
+        return usuarioCorrecto;
     }
 
     @Override
