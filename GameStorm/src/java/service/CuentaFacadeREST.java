@@ -94,16 +94,19 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
     @Produces({MediaType.APPLICATION_JSON})
     public String encontrarUsuario(@PathParam("nombreUsuario") String nombreUsuario, @PathParam("contraseña") String contraseña) throws JSONException {
         Cuenta UsuarioEsperado = find(nombreUsuario);
-        JSONObject jsonObjeto = new JSONObject();
+        String encontrado;
 
         if (UsuarioEsperado != null) {
             if (UsuarioEsperado.getContrasena().equals(contraseña)) {
-                jsonObjeto.put("valor", true);
+                encontrado = "true";
+            } else {
+                encontrado = "false";
             }
         } else {
-            jsonObjeto.put("valor", false);
+            encontrado = "false";
         }
-        return jsonObjeto.toString();
+
+        return encontrado;
     }
 
     @Override

@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
@@ -29,41 +30,26 @@
                             <div class="form-top">
                                 <div class="form-top-left">
                                     <h3>Iniciar Sesión</h3>
-                                </div>
-                                <!--<div class="form-top-right">
-                                    <i class="fa fa-key"></i>
-                                </div>-->
+                                </div>                                
                             </div>
                             <div class="form-bottom">
-                                <form role="form" action="" method="post" class="login-form">
+                                <h:form role="form" class="login-form">
                                     <div class="form-group">
                                         <label class="sr-only" for="form-username">Usuario:</label><br></br>
-                                        <p:inputText type="text" placeholder="Usuario..."  id="campoUsuario" value="#{controladorCuenta.nombreUsuario}" ></p:inputText>
+                                        <p:inputText type="text" placeholder="Usuario..."  id="campoUsuario" value="#{controladorCuenta.nombreUsuario}"/>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only"  for="form-password">Contraseña:</label><br></br>
-                                        <p:inputText  type="password"  placeholder="Contraseña..."  id="campoContraseña" value="#{controladorCuenta.contraseña}" ></p:inputText>
+                                        <p:inputText  type="password"  placeholder="Contraseña..."  id="campoContrasena" value="#{controladorCuenta.contrasena}" />
                                     </div>
                                     <br></br>
                                     <p:commandButton  value="I n i c i a r !"  class="botonIniciarSesion" id="botonIniciarSesion" action="#{controladorCuenta.iniciarSesion()}"></p:commandButton> 
-                                </form>
+                                </h:form>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 social-login">
-                            <!--<h3>Desarrolladores:</h3>
-                            <div class="social-login-buttons">
-                                <a class="btn btn-link-1 btn-link-1-facebook" href="https://azmind.com/demo/bootstrap-login-forms/form-1/index.html#">
-                                    <i class="fa fa-facebook"></i> Facebook
-                                </a>
-                                <a class="btn btn-link-1 btn-link-1-twitter" href="https://azmind.com/demo/bootstrap-login-forms/form-1/index.html#">
-                                    <i class="fa fa-twitter"></i> Twitter
-                                </a>
-                                <a class="btn btn-link-1 btn-link-1-google-plus" href="https://azmind.com/demo/bootstrap-login-forms/form-1/index.html#">
-                                    <i class="fa fa-google-plus"></i> Google Plus
-                                </a>
-                            </div>-->
+                        <div class="col-sm-6 col-sm-offset-3 social-login">                            
                         </div>
                     </div>
                 </div>

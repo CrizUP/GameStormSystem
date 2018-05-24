@@ -6,11 +6,13 @@
 package controladores;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import modelo.Cuenta;
 import servicios.ServicioCliente;
@@ -20,11 +22,11 @@ import servicios.ServicioCliente;
  * @author Irdevelo
  */
 @Named(value = "controladorCuenta")
-@Dependent
-public class controladorCuenta {
+@SessionScoped
+public class controladorCuenta implements Serializable{
 
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasena;
     private Cuenta cuenta;
     private boolean esValido;
 
@@ -36,12 +38,12 @@ public class controladorCuenta {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public Cuenta getCuenta() {
@@ -61,20 +63,21 @@ public class controladorCuenta {
     }
 
     public controladorCuenta() {
+        esValido = false;
     }
 
-    public void iniciarSesion()throws NoSuchAlgorithmException {
+    public void iniciarSesion(){
         try {
-            ServicioCliente servicio = new ServicioCliente();
-            String respuesta = "";
-            System.out.println("123");
-            respuesta = servicio.encontrarUsuario(nombreUsuario,cifrarContrasena(contraseña));
-            System.out.println("1234");
+            ServicioCliente servicio = new ServicioCliente();            
+            String respuesta = servicio.encontrarUsuario(nombreUsuario,cifrarContrasena(contrasena));
+            
             if (respuesta.equals("true")) {
-                System.out.println("true");
-            } else {
-                System.out.println("Usuario incorrecto");
-            }
+                esValido = true;
+                 FacesContext.getCurrentInstance().getExternalContext()
+                        .redirect("/GameStormeEmpleados/faces/welcomePrimefaces.xhtml");
+                 //System.out.println(servicio.find(Cuenta.class, nombreUsuario).toString());
+            } 
+            
         }catch(Exception e){
         e.printStackTrace();
         }
@@ -91,24 +94,17 @@ public class controladorCuenta {
         }
         return stringBuilder.toString();
     }
-    
-    public void validar() {
-        if (!esValido) {
-            try {
-                FacesContext.getCurrentInstance().getExternalContext()
-                        .redirect("/GameStormeEmpleados/faces/index.xhtml");
-            } catch (IOException e) {
-
-            }
-            esValido = false;
-        } else {
-            try {
-                FacesContext.getCurrentInstance().getExternalContext()
-                        .redirect("/GameStormeEmpleados/faces/ventanaEmpleadosxhtml");
-            } catch (IOException e) {
-            }
-            esValido = true;
-        }
-    }
+//    
+//    public void validar() {
+//        if (!esValido) {
+//            try {
+//                FacesContext.getCurrentInstance().getExternalContext()
+//                        .redirect("/GameStormeEmpleados/faces/index.xhtml");
+//            } catch (IOException e) {
+//
+//            }
+//            esValido = false;
+//        } 
+//    }
 
 }
