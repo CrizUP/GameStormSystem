@@ -9,11 +9,11 @@
         <title>Bootstrap Login Form Template</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="./Bootstrap Login Form Template_files/css">
-        <link rel="stylesheet" href="./Bootstrap Login Form Template_files/bootstrap.min.css">
-        <link rel="stylesheet" href="./Bootstrap Login Form Template_files/font-awesome.min.css">
-        <link rel="stylesheet" href="./Bootstrap Login Form Template_files/form-elements.css">
-        <link rel="stylesheet" href="./Bootstrap Login Form Template_files/style.css">
+        <link rel="stylesheet" href="./BootstrapLogin/css">
+        <link rel="stylesheet" href="./BootstrapLogin/bootstrap.min.css">
+        <link rel="stylesheet" href="./BootstrapLogin/font-awesome.min.css">
+        <link rel="stylesheet" href="./BootstrapLogin/form-elements.css">
+        <link rel="stylesheet" href="./BootstrapLogin/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,10 +28,13 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://azmind.com/demo/bootstrap-login-forms/form-1/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://azmind.com/demo/bootstrap-login-forms/form-1/assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="https://azmind.com/demo/bootstrap-login-forms/form-1/assets/ico/apple-touch-icon-57-precomposed.png">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="JS/Iniciosesion.js"></script>
     </head>
 
-    <body>
+
+
+    <body ng-app="inicioSesion" ng-controller="sesionController">
 
         <!-- Top content -->
         <div class="top-content">
@@ -48,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                             <div class="form-top">
                                 <div class="form-top-left">
@@ -63,18 +66,19 @@
                                 <form role="form" action="" method="post" class="login-form">
                                     <div class="form-group">
                                         <label class="sr-only" for="form-username">Username</label>
-                                        <input type="text" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username">
+                                        <input type="text" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username" ng-model="nombreUsuario">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="form-password">Password</label>
-                                        <input type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
+                                        <input type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password" ng-model="claveUsuario">
                                     </div>
-                                    <a href="VentanaPrincipal.html" class="btn" style="text-align: center; font-size: 20px; width: 505px; height: 45px; 
-                                       background-color: #5cb85c; color: white"> <b>I n i c i a r !</b></a>
+                                    <a ng-click="clicIniciarSesion()" class="btn"  style="text-align: center; font-size: 20px; width: 505px; height: 45px; 
+                                       background-color: #5cb85c; color: white"> <b>I n i c i a r !</b> </a>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <p> variables = {{nombreClave}}</p>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 social-login">
                             <!--<h3>Desarrolladores:</h3>
@@ -98,10 +102,10 @@
 
 
         <!-- Javascript -->
-        <script src="./Bootstrap Login Form Template_files/jquery-1.11.1.min.js.descarga"></script>
-        <script src="./Bootstrap Login Form Template_files/bootstrap.min.js.descarga"></script>
-        <script src="./Bootstrap Login Form Template_files/jquery.backstretch.min.js.descarga"></script>
-        <script src="./Bootstrap Login Form Template_files/scripts.js.descarga"></script>
+        <script src="./BootstrapLogin/jquery-1.11.1.min.js.descarga"></script>
+        <script src="./BootstrapLogin/bootstrap.min.js.descarga"></script>
+        <script src="./BootstrapLogin/jquery.backstretch.min.js.descarga"></script>
+        <script src="./BootstrapLogin/scripts.js.descarga"></script>
 
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
@@ -110,6 +114,7 @@
 
 
         <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 700px; width: 1349px; z-index: -999999; ">
-            <img src="./Bootstrap Login Form Template_files/1.jpg" style="position: initial; margin: 0px; padding: 0px; border: none; max-height: calc; max-width: calc; z-index: -999999; left: 0px; top: -99.6667px;"></div>
+            <img src="./BootstrapLogin/1.jpg" style="position: initial; margin: 0px; padding: 0px; border: none; max-height: calc; max-width: calc; z-index: -999999; left: 0px; top: -99.6667px;"></div>
     </body>
+
 </html>

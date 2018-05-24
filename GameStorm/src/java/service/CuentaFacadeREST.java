@@ -7,6 +7,8 @@ package service;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -19,6 +21,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import modelo.Cuenta;
+import org.primefaces.json.JSONException;
+import org.primefaces.json.JSONObject;
 
 /**
  * Descripcion
@@ -86,17 +90,20 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
     }
 
     @GET
-    @Path("{nombreUsuario}/{contraseña}")
-    public boolean encontrarUsuario(@PathParam("nombreUsuario") String nombreUsuario, @PathParam("contraseña") String contraseña) {
-        boolean usuarioCorrecto = false;
+    @Path("/login/{nombreUsuario}/{contraseña}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String encontrarUsuario(@PathParam("nombreUsuario") String nombreUsuario, @PathParam("contraseña") String contraseña) throws JSONException {
         Cuenta UsuarioEsperado = find(nombreUsuario);
+        JSONObject jsonObjeto = new JSONObject();
 
         if (UsuarioEsperado != null) {
             if (UsuarioEsperado.getContrasena().equals(contraseña)) {
-                usuarioCorrecto = true;
+                jsonObjeto.put("valor", true);
             }
+        } else {
+            jsonObjeto.put("valor", false);
         }
-        return usuarioCorrecto;
+        return jsonObjeto.toString();
     }
 
     @Override
