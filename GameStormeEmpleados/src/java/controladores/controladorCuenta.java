@@ -15,7 +15,7 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import modelo.Cuenta;
-import servicios.ServicioCliente;
+import servicios.ServicioCuenta;
 
 /**
  *
@@ -68,7 +68,7 @@ public class controladorCuenta implements Serializable{
 
     public void iniciarSesion(){
         try {
-            ServicioCliente servicio = new ServicioCliente();            
+            ServicioCuenta servicio = new ServicioCuenta();            
             String respuesta = servicio.encontrarUsuario(nombreUsuario,cifrarContrasena(contrasena));
             
             if (respuesta.equals("true")) {

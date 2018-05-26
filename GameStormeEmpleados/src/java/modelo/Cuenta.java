@@ -5,31 +5,39 @@
  */
 package modelo;
 
+import java.util.List;
+
 /**
  *
  * @author Irdevelo
  */
 public class Cuenta {
-
-    private String nombreUsuario;
-    private String contraseña;
+    
+    private String usuario;
+    private String contrasena;
     private String rol;
     private Persona idPersona;
+    private List<Pedido> pedidoList;
+    private List<Comentario> comentarioList;
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public Cuenta(){
+    
+    }
+    
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getRol() {
@@ -47,4 +55,24 @@ public class Cuenta {
     public void setIdPersona(Persona idPersona) {
         this.idPersona = idPersona;
     }
+
+    public List<Pedido> getPedidoList() {
+        return pedidoList;
+    }
+
+    public void setPedidoList(List<Pedido> pedidoList) {
+        this.pedidoList = pedidoList;
+    }
+
+    public List<Comentario> getComentarioList() {
+        return comentarioList;
+    }
+
+    public void setComentarioList(List<Comentario> comentarioList) {
+        this.comentarioList = comentarioList;
+    }
+    
+
+    
+    
 }

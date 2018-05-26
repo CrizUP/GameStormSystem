@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaGeneralEmpleado.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="content">
+
+        <h:panelGrid>
+            <h:form>
+
+                <h:column >
+                    <label>Nombre del juego:</label>
+                    <p:inputText type="text" placeholder="Nombre del juego..."  id="campoNombreJuego" value=""/>
+
+                    <label>Consola:</label>
+                    <p:selectOneMenu id="consolas" value="" style="width: 125px">
+                        <f:selectItem itemLabel="Consola" itemValue="Default"/>
+                        <f:selectItem itemLabel="Xbox" itemValue="Xbox"/>
+                        <f:selectItem itemLabel="Play Station" itemValue="PlayStation"/>
+                        <f:selectItem itemLabel="Nintendo Switch" itemValue="NintendoSwitch"/>
+
+                    </p:selectOneMenu>
+
+                    <label>Stock:</label>
+                    <p:spinner id="basic" value="" min="0" />
+
+                    <label>Stock:</label>
+                    <p:inputText type="Text" placeholder="Cantidad..."  id="campoCantidad" value=""/>
+
+                    <label>Genero:</label>
+                    <p:selectOneMenu id="generos" value="" style="width: 125px">
+                        <f:selectItem itemLabel="Genero" itemValue="Default"/>
+                        <f:selectItem itemLabel="Acción" itemValue="Accion"/>
+                        <f:selectItem itemLabel="Disparos" itemValue="Disparos"/>
+                        <f:selectItem itemLabel="Estrategia" itemValue="Estrategia"/>
+                        <f:selectItem itemLabel="Deportes" itemValue="Deportes"/>
+                        <f:selectItem itemLabel="Carreras" itemValue="Carreras"/>
+                        <f:selectItem itemLabel="Aventura" itemValue="Aventura"/>
+                        <f:selectItem itemLabel="Simulación" itemValue="Simulación"/>
+                        <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+
+                    </p:selectOneMenu>
+
+
+                </h:column>
+
+
+            </h:form>
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
