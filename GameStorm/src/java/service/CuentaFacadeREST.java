@@ -7,8 +7,6 @@ package service;
 
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -22,7 +20,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import modelo.Cuenta;
 import org.primefaces.json.JSONException;
-import org.primefaces.json.JSONObject;
 
 /**
  * Descripcion

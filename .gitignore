@@ -6,3 +6,6 @@ GameStorm/build/generated-sources/ap-source-output/modelo/Comentario_.java
 GameStorm/build/generated-sources/ap-source-output/modelo/Comentario_.java
 GameStorm/nbproject/private/private.properties
 /GameStormeEmpleados/dist/
+/GameStormServer/nbproject/private/
+/GameStormServer/build/
+/GameStormServer/dist/
