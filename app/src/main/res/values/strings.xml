@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GameStorm</string>
+    <string name="titulo">Iniciar sesión</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="iniciar">INICIAR</string>
+    <string name="title_activity_pantalla_principal">PantallaPrincipalActivity</string>
+</resources>
