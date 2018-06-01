@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaGeneralEmpleado.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="content">
+
+
+
+        <h:form  enctype="multipart/form-data">
+            <center>
+
+                <label>Nombre del juego:</label><br></br>
+                <p:inputText type="text" placeholder="Nombre del juego..."  id="campoNombreJuego" value="" size="22"/>
+                <br></br>
+                <br></br>
+                <label>Stock:</label><br></br>
+                <p:spinner id="basic" value="" min="0" size="20" placeholder="Stock...                                   "/>
+                <br></br>
+                <br></br>
+                <label>Precio:</label><br></br>
+                <p:inputText type="Text" placeholder="Cantidad..."  id="campoCantidad" value="" size="22"/>
+                <br></br>
+                <br></br>
+                <label>Consola:</label><br></br>
+                <p:selectOneMenu id="consolas" value="" style="width: 240px">
+                    <f:selectItem itemLabel="Consola" itemValue="Default"/>
+                    <f:selectItem itemLabel="Xbox" itemValue="Xbox"/>
+                    <f:selectItem itemLabel="Play Station" itemValue="PlayStation"/>
+                    <f:selectItem itemLabel="Nintendo Switch" itemValue="NintendoSwitch"/>
+
+                </p:selectOneMenu>
+                <br></br>
+                <br></br>
+
+
+                <label>Genero:</label><br></br>
+                <p:selectOneMenu id="generos" value="" style="width: 240px">
+                    <f:selectItem itemLabel="Genero" itemValue="Default"/>
+                    <f:selectItem itemLabel="Acción" itemValue="Accion"/>
+                    <f:selectItem itemLabel="Disparos" itemValue="Disparos"/>
+                    <f:selectItem itemLabel="Estrategia" itemValue="Estrategia"/>
+                    <f:selectItem itemLabel="Deportes" itemValue="Deportes"/>
+                    <f:selectItem itemLabel="Carreras" itemValue="Carreras"/>
+                    <f:selectItem itemLabel="Aventura" itemValue="Aventura"/>
+                    <f:selectItem itemLabel="Simulación" itemValue="Simulación"/>
+                    <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+
+                </p:selectOneMenu>
+                <br></br>
+                <br></br>
+                <label>Empresa desarrolladora:</label><br></br>
+                <p:inputText type="text" placeholder="Empresa..."  id="campoNombreJuego" value="" size="22"/>
+                <br></br>
+                <br></br>
+                <label>Link del video:</label><br></br>
+                <p:inputText type="text" placeholder="Link del video..."  id="campoLinkVideo" value="" size="22" />
+                <br></br>
+                <br></br>
+                <label>Descripción del juego:</label><br></br>
+                <p:inputTextarea rows="6" cols="33" />
+                <br></br>
+                <br></br>
+                <p:growl id="messages" showDetail="true" ></p:growl><br></br>
+                <p:fileUpload value="" mode="simple" sizeLimit="100" ></p:fileUpload>
+                <br></br>
+                <br></br>
+                <div class="form-group">
+                    <p:commandButton  value="Registrar"  class="botonRegistrar" id="guardarRegistro" ></p:commandButton> 
+                </div>
+            </center>
+
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>
