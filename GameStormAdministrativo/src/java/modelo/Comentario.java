@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Irdevelo
  */
-class Comentario {
+public class Comentario {
     
     private Integer idComentario;
     private String comentario;

@@ -3,16 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package controladores;
 
-import java.util.List;
+import java.io.File;
+import java.io.Serializable;
+import javax.inject.Named;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.RequestScoped;
+import modelo.Juego;
+import org.primefaces.model.UploadedFile;
+import servicios.ServicioJuego;
 
 /**
  *
- * @author Irdevelo
+ * @author Cristhian Ubaldo Promotor
  */
-public class Juego {
-    
+@Named(value = "controladorJuego")
+@SessionScoped
+public class controladorJuego implements Serializable {
+
     private Integer idJuego;
     private String nombreJuego;
     private String descripcion;
@@ -20,15 +30,10 @@ public class Juego {
     private int stock;
     private float precio;
     private String consola;
-    private String imagen;
+    private UploadedFile imagen;
     private String linkVideo;
     private String genero;
     private String empresaDesarrolladora;
-    private List<Pedido> pedidoList;
-    private List<Comentario> comentarioList;
-    
-    public Juego(){
-    }
 
     public Integer getIdJuego() {
         return idJuego;
@@ -86,11 +91,11 @@ public class Juego {
         this.consola = consola;
     }
 
-    public String getImagen() {
+    public UploadedFile getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(UploadedFile imagen) {
         this.imagen = imagen;
     }
 
@@ -118,22 +123,39 @@ public class Juego {
         this.empresaDesarrolladora = empresaDesarrolladora;
     }
 
-    public List<Pedido> getPedidoList() {
-        return pedidoList;
+    public controladorJuego() {
+
     }
 
-    public void setPedidoList(List<Pedido> pedidoList) {
-        this.pedidoList = pedidoList;
+    public void registrarJuego() {
+
+        Juego juego = new Juego();
+        juego.setNombreJuego(nombreJuego);
+        juego.setConsola(consola);
+        juego.setDescripcion(descripcion);
+        juego.setEmpresaDesarrolladora(empresaDesarrolladora);
+        juego.setGenero(genero);
+        juego.setLinkVideo(linkVideo);
+        juego.setImagen("sin imagen");
+        juego.setPrecio(precio);
+        juego.setPromedio(0);
+        juego.setStock(stock);
+
+        ServicioJuego servicio = new ServicioJuego();
+        servicio.create(juego);
+        File imagenEnvio = new File(imagen.getFileName());
+        servicio.subirImagen(imagenEnvio,"1");
+
+        this.nombreJuego = "";
+        this.descripcion = "";
+        this.promedio = 0;
+        this.stock = 0;
+        this.precio = 0;
+        this.consola = "";
+        this.imagen = null;
+        this.linkVideo = "";
+        this.genero = "";
+        this.empresaDesarrolladora = "";
     }
 
-    public List<Comentario> getComentarioList() {
-        return comentarioList;
-    }
-
-    public void setComentarioList(List<Comentario> comentarioList) {
-        this.comentarioList = comentarioList;
-    }
-    
-    
-    
 }

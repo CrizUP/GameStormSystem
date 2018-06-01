@@ -13,7 +13,7 @@ import java.util.List;
  * @author Cristhian Ubaldo Promotor
  * @version fecha
  */
-class Persona {
+public class Persona {
 
     private Integer idPersona;
     private String nombre;

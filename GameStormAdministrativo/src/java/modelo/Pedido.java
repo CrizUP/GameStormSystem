@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Irdevelo
  */
-class Pedido {
+public class Pedido {
     
     private Integer idPedido;
      private int cantidadJuegos;

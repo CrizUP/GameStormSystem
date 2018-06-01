@@ -4,30 +4,31 @@
                 template="./PlantillaGeneralEmpleado.xhtml"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
 
 
     <ui:define name="content">
 
 
 
-        <h:form  enctype="multipart/form-data">
+        <h:form id="formularioRegistroJuego">
             <center>
 
                 <label>Nombre del juego:</label><br></br>
-                <p:inputText type="text" placeholder="Nombre del juego..."  id="campoNombreJuego" value="" size="22"/>
+                <p:inputText type="text" placeholder="Nombre del juego..."  id="campoNombreJuego" value="#{controladorJuego.nombreJuego}" size="22"/>
                 <br></br>
                 <br></br>
                 <label>Stock:</label><br></br>
-                <p:spinner id="basic" value="" min="0" size="20" placeholder="Stock...                                   "/>
+                <p:spinner id="campoStock" value="#{controladorJuego.stock}" min="0" size="20" placeholder="Stock...                                   "/>
                 <br></br>
                 <br></br>
                 <label>Precio:</label><br></br>
-                <p:inputText type="Text" placeholder="Cantidad..."  id="campoCantidad" value="" size="22"/>
+                <p:inputText type="Text" placeholder="Cantidad..."  id="campoPrecio" value="#{controladorJuego.precio}" size="22"/>
                 <br></br>
                 <br></br>
                 <label>Consola:</label><br></br>
-                <p:selectOneMenu id="consolas" value="" style="width: 240px">
+                <p:selectOneMenu id="campoConsolas" value="#{controladorJuego.consola}" style="width: 240px">
                     <f:selectItem itemLabel="Consola" itemValue="Default"/>
                     <f:selectItem itemLabel="Xbox" itemValue="Xbox"/>
                     <f:selectItem itemLabel="Play Station" itemValue="PlayStation"/>
@@ -39,7 +40,7 @@
 
 
                 <label>Genero:</label><br></br>
-                <p:selectOneMenu id="generos" value="" style="width: 240px">
+                <p:selectOneMenu id="campoGeneros" value="#{controladorJuego.genero}" style="width: 240px">
                     <f:selectItem itemLabel="Genero" itemValue="Default"/>
                     <f:selectItem itemLabel="Acción" itemValue="Accion"/>
                     <f:selectItem itemLabel="Disparos" itemValue="Disparos"/>
@@ -54,23 +55,25 @@
                 <br></br>
                 <br></br>
                 <label>Empresa desarrolladora:</label><br></br>
-                <p:inputText type="text" placeholder="Empresa..."  id="campoNombreJuego" value="" size="22"/>
+                <p:inputText type="text" placeholder="Empresa..."  id="campoEmpresa" value="#{controladorJuego.empresaDesarrolladora}" size="22"/>
                 <br></br>
                 <br></br>
                 <label>Link del video:</label><br></br>
-                <p:inputText type="text" placeholder="Link del video..."  id="campoLinkVideo" value="" size="22" />
+                <p:inputText type="text" placeholder="Link del video..."  id="campoLinkVideo" value="#{controladorJuego.linkVideo}" size="22" />
                 <br></br>
                 <br></br>
                 <label>Descripción del juego:</label><br></br>
-                <p:inputTextarea rows="6" cols="33" />
+                <p:inputTextarea id="campoDescripcion" rows="6" cols="33" value="#{controladorJuego.descripcion}"/>
                 <br></br>
                 <br></br>
-                <p:growl id="messages" showDetail="true" ></p:growl><br></br>
-                <p:fileUpload value="" mode="simple" sizeLimit="100" ></p:fileUpload>
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="messages" showDetail="true" ></p:growl>
+                    <p:fileUpload id="campoImagen" value="" mode="simple" sizeLimit="100" ></p:fileUpload>
+                </h:form>
                 <br></br>
                 <br></br>
                 <div class="form-group">
-                    <p:commandButton  value="Registrar"  class="botonRegistrar" id="guardarRegistro" ></p:commandButton> 
+                    <p:commandButton id="botonRegistrar" value="Registrar" action="#{controladorJuego.registrarJuego()}" update="formularioRegistroJuego"></p:commandButton>
                 </div>
             </center>
 

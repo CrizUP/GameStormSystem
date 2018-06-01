@@ -5,14 +5,18 @@
  */
 package service;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -94,13 +98,12 @@ public class JuegoFacadeREST extends AbstractFacade<Juego> {
         return String.valueOf(super.count());
     }
 
-    
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
-            @POST
+
+    @POST
     @Path("/fotos/{id}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response subirImagen(@Context HttpServletRequest request, @PathParam("id") Integer id) {
@@ -116,12 +119,12 @@ public class JuegoFacadeREST extends AbstractFacade<Juego> {
                 is.read(array, 0, tamano);
                 archivo = new FileOutputStream(ruta);
                 archivo.write(array, 0, tamano);
-                
+
                 salida = "{\"Respuesta\": \"OK\"}";
             }
         } catch (IOException | ServletException ex) {
             salida = "{\"Respuesta\": \"" + ex.toString() + "\"}";
-        }finally{
+        } finally {
             try {
                 archivo.close();
             } catch (IOException ex) {
@@ -130,6 +133,24 @@ public class JuegoFacadeREST extends AbstractFacade<Juego> {
         }
         return Response.status(200).entity(salida).build();
     }
-    
-    
+
+    @POST
+    @Path("/fotos/{id}")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public void subirImagenJSF(File imagen, @PathParam("id") Integer id) {
+       
+        BufferedImage imagenCrear = null;
+        try{
+            String ruta = new File(".").getCanonicalPath() + "/fotos/" + id + ".jpg";
+            imagenCrear = ImageIO.read(imagen);
+            System.out.println("Imagen empieza a crear");
+            ImageIO.write(imagenCrear, "jpg", new File(ruta));
+            System.out.println("Se creó la imagen");
+        } catch (IOException ex) {
+            Logger.getLogger(JuegoFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("no se puede crear la imagen");
+        }
+        
+    }
+
 }
