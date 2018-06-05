@@ -84,7 +84,7 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
     }
 
      
-            @GET
+    @GET
     @Path("/login/{nombreUsuario}/{contraseña}")
     @Produces({MediaType.APPLICATION_JSON})
     public String encontrarUsuario(@PathParam("nombreUsuario") String nombreUsuario, @PathParam("contraseña") String contraseña) {
@@ -103,6 +103,9 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
 
         return encontrado;
     }
+    
+    
+    
     
     
     @Override

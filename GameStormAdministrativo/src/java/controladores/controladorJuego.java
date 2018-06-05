@@ -144,7 +144,7 @@ public class controladorJuego implements Serializable {
         ServicioJuego servicio = new ServicioJuego();
         servicio.create(juego);
         File imagenEnvio = new File(imagen.getFileName());
-        servicio.subirImagen(imagenEnvio,"1");
+       // servicio.subirImagen(imagenEnvio,"1");
 
         this.nombreJuego = "";
         this.descripcion = "";

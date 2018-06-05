@@ -11,31 +11,31 @@
 
 
 
-        <h:form>
+        <h:form id="formulario">
             <center>
 
                 <label>Nombre:</label><br></br>
-                <p:inputText type="text" placeholder="Nombre..."  id="campoNombre" value="" size="22"/>
+                <p:inputText type="text" placeholder="Nombre..."  id="campoNombre" value="#{controladorPersona.nombre}" size="22"/>
                 <br></br>
                 <br></br>
                 <br></br>
                 <label>Apellidos:</label><br></br>
-                <p:inputText type="text" placeholder="Apellidos..."  id="campoApellidos" value="" size="22"/>
+                <p:inputText type="text" placeholder="Apellidos..."  id="campoApellidos" value="#{controladorPersona.apellidos}" size="22"/>
                 <br></br>
                 <br></br>
                 <br></br>
                 <label>Coreo electrónico:</label><br></br>
-                <p:inputText type="Text" placeholder="Correo electrónico..."  id="campoCorreo" value="" size="22"/>
+                <p:inputText type="Text" placeholder="Correo electrónico..."  id="campoCorreo" value="#{controladorPersona.correo}" size="22"/>
                 <br></br>
                 <br></br>
                 <br></br>
                 <label>Teléfono:</label><br></br>
-                <p:inputText type="Text" placeholder="Teléfono..."  id="campoTelefono" value="" size="22"/>
+                <p:inputText type="Text" placeholder="Teléfono..."  id="campoTelefono" value="#{controladorPersona.telefono}" size="22"/>
                 <br></br>
                 <br></br>
                 <br></br>
                 <label>Sexo:</label><br></br>
-                <p:selectOneMenu id="sexo" value="" style="width: 240px">
+                <p:selectOneMenu id="sexo" value="#{controladorPersona.sexo}" style="width: 240px">
                     <f:selectItem itemLabel="Sexo" itemValue="Default"/>
                     <f:selectItem itemLabel="Masculino" itemValue="M"/>
                     <f:selectItem itemLabel="Femenino" itemValue="F"/>
@@ -43,7 +43,7 @@
                 <br></br>
                 <br></br>
                 <div class="form-group">
-                    <p:commandButton  value="Registrar"  class="botonRegistrar" id="guardarRegistro" ></p:commandButton> 
+                    <p:commandButton  value="Registrar"  class="botonRegistrar" id="guardarRegistro" action="#{controladorPersona.registrarEmpleado()}" update="formulario" ></p:commandButton> 
                 </div>
             </center>
         </h:form>

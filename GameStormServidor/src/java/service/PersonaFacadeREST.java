@@ -87,5 +87,27 @@ public class PersonaFacadeREST extends AbstractFacade<Persona> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
+    @GET
+    @Path("/ultimo")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Persona obtenerID() {
+        Persona persona;
+        List<Persona> personas;
+        personas = findAll();
+        persona = personas.get(personas.size() - 1);
+        return persona;
+    }
+
+    @GET
+    @Path("/rol")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Persona> obtenerEmpleados() {
+        List<Persona> empleados;
+        
+        empleados = em.createQuery("Select *from persona, cuenta where Persona.idPersona = Cuenta.idPersona and Cuenta.rol="+'"'+"Empleado"+'"').getResultList();
+        
+        return empleados;
+    }
+
 }

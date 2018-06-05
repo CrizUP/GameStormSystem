@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaGeneralEmpleado.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <ui:define name="content">
+
+        <p:dataTable value="#{controladorPersona.obtenerEmpleados}" var="empleado" id="tablaEmpleados">
+
+            <p:column headerText="ID Empleado">
+                <h:outputText value="#{empleado.idPersona}" />
+            </p:column>
+            
+            <p:column headerText="Nombre">
+                <h:outputText value="#{empleado.nombre}" />
+            </p:column>
+
+            <p:column headerText="Apellidos">
+                <h:outputText value="#{empleado.apellidos}" />
+            </p:column>
+
+            <p:column headerText="Correo">
+                <h:outputText value="#{empleado.correo}" />
+            </p:column>
+
+            <p:column headerText="Telefono">
+                <h:outputText value="#{empleado.telefono}" />
+            </p:column>
+            
+            <p:column headerText="Sexo">
+                <h:outputText value="#{empleado.sexo}" />
+            </p:column>
+        </p:dataTable>
+
+    </ui:define>
+
+</ui:composition>
