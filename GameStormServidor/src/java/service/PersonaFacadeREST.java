@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import modelo.Cuenta;
 import modelo.Persona;
 
 /**
@@ -102,10 +103,11 @@ public class PersonaFacadeREST extends AbstractFacade<Persona> {
     @GET
     @Path("/rol")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Persona> obtenerEmpleados() {
-        List<Persona> empleados;
-        
-        empleados = em.createQuery("Select *from persona, cuenta where Persona.idPersona = Cuenta.idPersona and Cuenta.rol="+'"'+"Empleado"+'"').getResultList();
+    public List<Cuenta> obtenerEmpleados() {
+        List<Cuenta> empleados;
+        String empleado = "Empleado";
+        String consulta = "SELECT c FROM  Cuenta c WHERE c.rol=:empleado";
+        empleados = em.createQuery(consulta).setParameter("empleado", empleado).getResultList();
         
         return empleados;
     }

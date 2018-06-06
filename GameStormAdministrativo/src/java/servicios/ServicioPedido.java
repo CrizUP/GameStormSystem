@@ -11,14 +11,14 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import modelo.Cuenta;
-import modelo.Persona;
+import modelo.Pedido;
 
 /**
- * Jersey REST client generated for REST resource:PersonaFacadeREST
- * [modelo.persona]<br>
+ * Jersey REST client generated for REST resource:PedidoFacadeREST
+ * [modelo.pedido]<br>
  * USAGE:
  * <pre>
- *        ServicioPersona client = new ServicioPersona();
+ *        ServicioPedido client = new ServicioPedido();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -26,15 +26,15 @@ import modelo.Persona;
  *
  * @author Irdevelo
  */
-public class ServicioPersona {
+public class ServicioPedido {
 
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/GameStormServidor/webresources";
 
-    public ServicioPersona() {
+    public ServicioPedido() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("modelo.persona");
+        webTarget = client.target(BASE_URI).path("modelo.pedido");
     }
 
     public String countREST() throws ClientErrorException {
@@ -59,33 +59,28 @@ public class ServicioPersona {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public List<Cuenta> obtenerEmpleados() throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("rol");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Cuenta>>(){});
+    public void create_XML(Object requestEntity) throws ClientErrorException {
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_XML));
     }
 
-    public void create(Object requestEntity) throws ClientErrorException {
+    public void create_JSON(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public Persona obtenerID() throws ClientErrorException {
+    public List<Pedido> findAll() throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path("ultimo");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<Persona>(){});
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Pedido>>(){});
     }
 
-    public List<Persona> findAll() throws ClientErrorException {
-        WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Persona>>(){});
-    }
-
-    public void remove(Integer id) throws ClientErrorException {
+    public void remove(String id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request().delete();
     }
 
     public void close() {
         client.close();
     }
+    
+    
+    
     
 }

@@ -33,6 +33,15 @@ public class controladorPersona implements Serializable {
     private String correo;
     private String telefono;
     private String sexo;
+    private Persona persona;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
     public Integer getIdPersona() {
         return idPersona;
@@ -86,13 +95,20 @@ public class controladorPersona implements Serializable {
 
     }
 
-    public List<Persona> getObtenerEmpleados() {
+    public void eliminar() {
+        ServicioPersona servicio = new ServicioPersona();
+        ServicioCuenta servicioCuenta = new ServicioCuenta();
+        servicioCuenta.remove(nombre);
+        servicio.remove(idPersona);
+    }
+
+    public List<Cuenta> getObtenerEmpleados() {
 
         ServicioPersona servicio = new ServicioPersona();
         ServicioCuenta servicioCuenta = new ServicioCuenta();
-        List<Persona> empleados;
+        List<Cuenta> empleados;
 
-        empleados = servicio.findAll();
+        empleados = servicio.obtenerEmpleados();
 
         return empleados;
 

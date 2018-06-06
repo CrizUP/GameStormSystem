@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import modelo.Comentario;
 import modelo.Pedido;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-02T17:22:09")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-05T10:33:00")
 @StaticMetamodel(Juego.class)
 public class Juego_ { 
 
