@@ -14,6 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import static javax.faces.application.FacesMessage.SEVERITY_INFO;
+import javax.faces.context.FacesContext;
 import modelo.Cuenta;
 import modelo.Persona;
 import servicios.ServicioCuenta;
@@ -34,6 +37,15 @@ public class controladorPersona implements Serializable {
     private String telefono;
     private String sexo;
     private Persona persona;
+    private Cuenta cuenta;
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
 
     public Persona getPersona() {
         return persona;
@@ -92,14 +104,45 @@ public class controladorPersona implements Serializable {
     }
 
     public controladorPersona() {
-
     }
 
     public void eliminar() {
         ServicioPersona servicio = new ServicioPersona();
         ServicioCuenta servicioCuenta = new ServicioCuenta();
-        servicioCuenta.remove(nombre);
-        servicio.remove(idPersona);
+        servicioCuenta.remove(cuenta.getUsuario());
+        servicio.remove(cuenta.getIdPersona().getIdPersona());
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.addMessage(null, new FacesMessage(SEVERITY_INFO, "Eliminado", "El empleado ha sido eliminado"));
+    }
+
+    public void guardarCambiosEmpleado() {
+        ServicioPersona servicio = new ServicioPersona();
+
+        cuenta.getIdPersona().setNombre(nombre);
+        cuenta.getIdPersona().setApellidos(apellidos);
+        cuenta.getIdPersona().setCorreo(correo);
+        cuenta.getIdPersona().setTelefono(telefono);
+
+        servicio.edit(cuenta.getIdPersona(), cuenta.getIdPersona().getIdPersona());
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.addMessage(null, new FacesMessage(SEVERITY_INFO, "Editado", "El empleado ha sido modificado"));
+
+        this.nombre = "";
+        this.apellidos = "";
+        this.correo = "";
+        this.telefono = "";
+        this.sexo = "";
+    
+    
+    }
+
+    public void editarEmpleado() {
+
+        nombre = cuenta.getIdPersona().getNombre();
+        apellidos = cuenta.getIdPersona().getApellidos();
+        correo = cuenta.getIdPersona().getCorreo();
+        telefono = cuenta.getIdPersona().getTelefono();
+
     }
 
     public List<Cuenta> getObtenerEmpleados() {
@@ -141,6 +184,9 @@ public class controladorPersona implements Serializable {
         }
         cuenta.setIdPersona(persona2);
         servicioCuenta.create(cuenta);
+
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.addMessage(null, new FacesMessage(SEVERITY_INFO, "Registrado", "El empleado ha sido registrado correctamente"));
 
         this.nombre = "";
         this.apellidos = "";

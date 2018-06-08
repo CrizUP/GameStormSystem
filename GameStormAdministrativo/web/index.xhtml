@@ -16,36 +16,51 @@
             <div class="inner-bg">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>GameStorm</strong></h1>
-                            <div class="description">
-                                <h4 style="color: white;">
-                                    Inicia sesión                                     
-                                </h4>
+                        <center>
+                            <div class="col-sm-8 col-sm-offset-2 text">
+                                   <br></br>
+                                      <br></br>
+                                         <br></br>
+                                         <h1 style="font-size: 60px; color: white" ><strong>GameStorm</strong></h1>
+                                <div class="description">
+                                  
+                                </div>
                             </div>
-                        </div>
+                        </center>
                     </div>
                     <div class="row" >
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                             <div class="form-top">
+
                                 <div class="form-top-left">
-                                    <h3>Iniciar Sesión</h3>
+                                    
+                                    <center>
+                                        <h3 style="color: white"><strong>Iniciar Sesión</strong></h3>
+                                    </center>
                                 </div>                                
                             </div>
-                            <div class="form-bottom">
-                                <h:form role="form" class="login-form">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="form-username">Usuario:</label><br></br>
-                                        <p:inputText type="text" placeholder="Usuario..."  id="campoUsuario" value="#{controladorCuenta.nombreUsuario}"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only"  for="form-password">Contraseña:</label><br></br>
-                                        <p:inputText  type="password"  placeholder="Contraseña..."  id="campoContrasena" value="#{controladorCuenta.contrasena}" />
-                                    </div>
-                                    <br></br>
-                                    <p:commandButton  value="I n i c i a r !"  class="botonIniciarSesion" id="botonIniciarSesion" action="#{controladorCuenta.iniciarSesion()}"></p:commandButton> 
-                                </h:form>
-                            </div>
+                            <center>
+                                <div class="form-bottom">
+                                    <h:form id="form" role="form" class="login-form">
+                                        <p:growl id="mensajes" showDetail="true" sticky="true"></p:growl>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-username" style="font-size: 20px;color: white"><strong>Usuario:</strong></label><br></br>
+                                            <br></br>
+                                            <p:inputText type="text" placeholder="Usuario..."  id="campoUsuario" value="#{controladorCuenta.nombreUsuario}"/>
+                                        </div>
+                                        <br></br>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-username" style="font-size: 20px; color: white"><strong>Contraeña:</strong></label><br></br>
+                                            <br></br>
+                                            <p:inputText  type="password"  placeholder="Contraseña..."  id="campoContrasena" value="#{controladorCuenta.contrasena}" />
+                                        </div>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <p:commandButton  value="I n i c i a r !" style="background-color: #5cb85c;font-size: 20px; width: 400px;"   class="botonIniciarSesion" id="botonIniciarSesion" action="#{controladorCuenta.iniciarSesion()}"></p:commandButton> 
+                                    </h:form>
+                                </div>
+                            </center>
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +72,7 @@
 
         </div>
         <br />
-    
+
     </h:body>
 </html>
 

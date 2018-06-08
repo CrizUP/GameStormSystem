@@ -9,8 +9,9 @@
 
 
     <ui:define name="content">
-        <h:form id="form">
-            <p:dataTable value="#{controladorPedido.obtenerPedidos}" var="pedido" id="tablaPedidos">
+        <h:form id="form" style="background-color: #ffffff">
+            <p:growl id="mensajes" showDetail="true" sticky="true"></p:growl>
+            <p:dataTable value="#{controladorPedido.obtenerPedidos}" var="pedido" id="tablaPedidos" selectionMode="single" selection="#{controladorPedido.pedido}" rowKey="#{pedido.idPedido}" >
 
                 <p:column headerText="ID Pedido">
                     <h:outputText value="#{pedido.idPedido}" />
@@ -22,28 +23,18 @@
 
                 <p:column headerText="Fecha de apartado">
                     <h:outputText value="#{pedido.fechaApartado}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="Fecha límite">
                     <h:outputText value="#{pedido.fechaLimite}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                     </h:outputText>
                 </p:column>
 
                 <p:column headerText="Total">
                     <h:outputText value="#{pedido.precioTotal}" />
-                </p:column>
-
-                <p:column headerText="Fecha de pago">
-                    <h:outputText value="#{pedido.fechaPago}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-                    </h:outputText>
-                </p:column>
-
-                <p:column headerText="Estatus">
-                    <h:outputText value="#{pedido.estatus}" />
                 </p:column>
 
                 <p:column headerText="Juego">
@@ -54,8 +45,19 @@
                     <h:outputText value="#{pedido.usuario.usuario}" />
                 </p:column>
 
+
+                <p:column headerText="Fecha de pago">
+                    <h:outputText value="#{pedido.fechaPago}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Estatus">
+                    <h:outputText value="#{pedido.estatus}" />
+                </p:column>
             </p:dataTable>
-            
+            <p:commandButton value='Entregar' id="botonEntregar" action="#{controladorPedido.registrarCompra()}" update="form"></p:commandButton>
+            <p:commandButton value='Cancelar' id="botonCancelar" action="#{controladorPedido.cancelarCompra()}" update="form"></p:commandButton>
         </h:form>
     </ui:define>
 

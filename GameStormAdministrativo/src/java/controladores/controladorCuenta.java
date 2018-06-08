@@ -13,6 +13,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import static javax.faces.application.FacesMessage.SEVERITY_INFO;
 import javax.faces.context.FacesContext;
 import modelo.Cuenta;
 import servicios.ServicioCuenta;
@@ -75,7 +77,11 @@ public class controladorCuenta implements Serializable{
                 esValido = true;
                  FacesContext.getCurrentInstance().getExternalContext()
                         .redirect("/GameStormAdministrativo/faces/PlantillaGeneralEmpleado.xhtml");
-                 //System.out.println(servicio.find(Cuenta.class, nombreUsuario).toString());
+                
+            }else{
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.addMessage(null, new FacesMessage(SEVERITY_INFO, "Error", "El usuario y contraseña son invalidos"));
+            
             } 
             
         }catch(Exception e){

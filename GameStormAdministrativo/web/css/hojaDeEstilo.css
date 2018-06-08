@@ -1,5 +1,5 @@
 html{
-    background-image: url("../imagenes/1.jpg");
+    background-image: url("../imagenes/Zelda.jpg");
     background-size: cover;
 
 }
@@ -12,3 +12,8 @@ html{
     background-color: #5cb85c; color: white
 }
 
+
+#fondo{
+    background-color:darkgreen;
+
+}

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaGeneralEmpleado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <ui:define name="content">
+
+        <h:form id="form" style="background-color: #ffffff">
+            <p:growl id="mensajes" showDetail="true" sticky="true"></p:growl>
+            <p:dataTable value="#{controladorJuego.obtenerJuegos}" var="juego" id="tablaJuegos" selectionMode="single" selection="#{controladorJuego.juego}" rowKey="#{juego.idJuego}">
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{juego.nombreJuego}"/>
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{juego.precio}"/>
+                </p:column>
+
+                <p:column headerText="Consola">
+                    <h:outputText value="#{juego.consola}"/>
+                </p:column>
+
+                <p:column headerText="Stock">
+                    <h:outputText value="#{juego.stock}" />
+                </p:column>
+
+                <p:column headerText="Promedio">
+                    <h:outputText value="#{juego.promedio}" />
+                </p:column>
+
+                <p:column headerText="Genero">
+                    <h:outputText value="#{juego.genero}" />
+                </p:column>
+
+                <p:column headerText="Empresa Desarrolladora">
+                    <h:outputText value="#{juego.empresaDesarrolladora}" />
+                </p:column>
+
+                <p:column headerText="Link">
+                    <h:outputText value="#{juego.linkVideo}" />
+                </p:column>
+
+            </p:dataTable>
+            <p:commandButton value='Editar' id="botonEditar" onsuccess="PF('dialogo').show();" action="#{controladorJuego.editarJuego()}" update=":form:dialogo"  ></p:commandButton>
+
+            <p:dialog id="CuadroDialogo" header="Datos del empleado" height="200" widgetVar="dialogo" showEffect="explode"  hideEffect="bounce"> 
+
+
+                <p:panelGrid columns="2" id="dialogo">
+                    <h:outputText value="Nombre del juego"></h:outputText>
+                    <p:inputText id='campoNombreJuego' size="20" placeholder='Introduce el nombre del juego...' value="#{controladorJuego.nombreJuego}"></p:inputText>
+
+                    <h:outputText value="Precio"></h:outputText>
+                    <p:inputText id='campoPrecio' size="20" placeholder='Introduce el precio' value="#{controladorJuego.precio}"></p:inputText>
+
+
+                    <h:outputText value="Empresa"></h:outputText>
+                    <p:inputText id='campoEmpresa' size="40" placeholder='Introduce la empresa desarrolladora' value="#{controladorJuego.empresaDesarrolladora}" ></p:inputText>
+
+                    <h:outputText value="Link"></h:outputText>
+                    <p:inputText id='campoLinkVideo' size="40" placeholder='Introduce el link' value="#{controladorJuego.linkVideo}" ></p:inputText>
+
+                    <h:outputText value="Descripción"></h:outputText>
+                    <p:inputText id='campoDescripcion' size="40" placeholder='Introduce la descripción del video' value="#{controladorJuego.descripcion}" ></p:inputText>
+
+                    <h:outputText value="Stock"></h:outputText>
+                    <p:spinner id="campoStock" value="#{controladorJuego.stock}" min="0" size="20" placeholder="Stock...                                   "/>
+
+                    <h:outputText value="Consola"></h:outputText>
+                    <p:selectOneMenu id="campoConsolas" value="#{controladorJuego.consola}" style="width: 240px">
+                        <f:selectItem itemLabel="Consola" itemValue="Default"/>
+                        <f:selectItem itemLabel="Xbox" itemValue="Xbox"/>
+                        <f:selectItem itemLabel="Play Station" itemValue="PlayStation"/>
+                        <f:selectItem itemLabel="Nintendo Switch" itemValue="NintendoSwitch"/>
+                    </p:selectOneMenu>
+
+                    <h:outputText value="Genero"></h:outputText>
+                    <p:selectOneMenu id="campoGeneros" value="#{controladorJuego.genero}" style="width: 240px">
+                        <f:selectItem itemLabel="Genero" itemValue="Default"/>
+                        <f:selectItem itemLabel="Acción" itemValue="Accion"/>
+                        <f:selectItem itemLabel="Disparos" itemValue="Disparos"/>
+                        <f:selectItem itemLabel="Estrategia" itemValue="Estrategia"/>
+                        <f:selectItem itemLabel="Deportes" itemValue="Deportes"/>
+                        <f:selectItem itemLabel="Carreras" itemValue="Carreras"/>
+                        <f:selectItem itemLabel="Aventura" itemValue="Aventura"/>
+                        <f:selectItem itemLabel="Simulación" itemValue="Simulación"/>
+                        <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:commandButton value='Guardar' icon="fa fa-save" action="#{controladorJuego.guardarCambiosJuego()}" update="form" onsuccess="PF('dialogo').hide();" ></p:commandButton>
+
+            </p:dialog>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

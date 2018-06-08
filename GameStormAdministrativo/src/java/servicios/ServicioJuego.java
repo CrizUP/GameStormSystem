@@ -5,10 +5,13 @@
  */
 package servicios;
 
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import modelo.Juego;
 
 /**
  * Jersey REST client generated for REST resource:JuegoFacadeREST
@@ -40,7 +43,7 @@ public class ServicioJuego {
         return resource.request(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
     }
 
-    public void edit(Object requestEntity, String id) throws ClientErrorException {
+    public void edit(Object requestEntity, Integer id) throws ClientErrorException {
         webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id})).request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
@@ -64,9 +67,9 @@ public class ServicioJuego {
         return webTarget.path(java.text.MessageFormat.format("fotos/{0}", new Object[]{id})).request().post(null, Response.class);
     }
 
-    public <T> T findAll(Class<T> responseType) throws ClientErrorException {
+    public List<Juego> findAll() throws ClientErrorException {
         WebTarget resource = webTarget;
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Juego>>(){});
     }
 
     public void subirImagenJSF(String id) throws ClientErrorException {

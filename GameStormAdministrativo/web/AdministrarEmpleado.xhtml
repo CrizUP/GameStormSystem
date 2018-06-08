@@ -8,36 +8,58 @@
 
 
     <ui:define name="content">
-        <h:form id="form">
-            <p:dataTable value="#{controladorPersona.obtenerEmpleados}" var="empleado" id="tablaEmpleados" selectionMode="single" selection="#{controladorPersona.persona}" rowKey="#{empleado.idPersona}">
+        <h:form id="form" style="background-color: #ffffff">
+            <p:growl id="mensajes" showDetail="true" sticky="true"></p:growl>
+            <p:dataTable value="#{controladorPersona.obtenerEmpleados}" var="cuenta" id="tablaEmpleados" selectionMode="single" selection="#{controladorPersona.cuenta}" rowKey="#{cuenta.usuario}">
 
                 <p:column headerText="ID Empleado">
-                    <h:outputText value="#{empleado.idPersona.idPersona}" />
+                    <h:outputText value="#{cuenta.idPersona.idPersona}" />
                 </p:column>
 
                 <p:column headerText="Nombre">
-                    <h:outputText value="#{empleado.idPersona.nombre}" />
+                    <h:outputText value="#{cuenta.idPersona.nombre}" />
                 </p:column>
 
                 <p:column headerText="Apellidos">
-                    <h:outputText value="#{empleado.idPersona.apellidos}" />
+                    <h:outputText value="#{cuenta.idPersona.apellidos}" />
                 </p:column>
 
                 <p:column headerText="Correo">
-                    <h:outputText value="#{empleado.idPersona.correo}" />
+                    <h:outputText value="#{cuenta.idPersona.correo}" />
                 </p:column>
 
                 <p:column headerText="Telefono">
-                    <h:outputText value="#{empleado.idPersona.telefono}" />
+                    <h:outputText value="#{cuenta.idPersona.telefono}" />
                 </p:column>
 
                 <p:column headerText="Sexo">
-                    <h:outputText value="#{empleado.idPersona.sexo}" />
+                    <h:outputText value="#{cuenta.idPersona.sexo}" />
                 </p:column>
             </p:dataTable>
-            <p:commandButton value='Editar' id="botonEditar" ></p:commandButton>
-            <p:commandButton value="Eliminar" id="botonEliminar" action="#{controladorPersona.eliminar()}" update="tablaEmpleados"></p:commandButton>
+            <p:commandButton value='Editar' id="botonEditar"  onsuccess="PF('dialogo').show();" action="#{controladorPersona.editarEmpleado()}" update=":form:dialogo"  ></p:commandButton>
+            <p:commandButton value="Eliminar" id="botonEliminar" action="#{controladorPersona.eliminar()}" update="form"></p:commandButton>
 
+           <p:dialog id="CuadroDialogo" header="Datos del empleado" height="200" widgetVar="dialogo" showEffect="explode"  hideEffect="bounce"> 
+
+                <p:panelGrid columns="2" id="dialogo">
+                    <h:outputText value="Nombre"></h:outputText>
+                    <p:inputText id='campoNombre' size="20" placeholder='Introduce tu nombre...' value="#{controladorPersona.nombre}"></p:inputText>
+
+                    <h:outputText value="Apellidos"></h:outputText>
+                    <p:inputText id='campoApellidos' size="20" placeholder='Introduce tus apellidos' value="#{controladorPersona.apellidos}"></p:inputText>
+
+
+                    <h:outputText value="Correo"></h:outputText>
+                    <p:inputText id='campoCorreo' size="40" placeholder='Introduce tu correo' value="#{controladorPersona.correo}" ></p:inputText>
+
+                    <h:outputText value="Telefono"></h:outputText>
+                    <p:inputText id='campoTelefono' size="40" placeholder='Introduce tu telefono' value="#{controladorPersona.telefono}" ></p:inputText>
+
+
+                </p:panelGrid>
+               <p:commandButton value='Guardar' icon="fa fa-save" action="#{controladorPersona.guardarCambiosEmpleado()}" update="form" onsuccess="PF('dialogo').hide();" ></p:commandButton>
+
+            </p:dialog>
         </h:form>
     </ui:define>
 

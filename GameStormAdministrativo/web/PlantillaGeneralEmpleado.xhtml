@@ -5,41 +5,45 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>GameStorm</title>
+        
+        <style>
+            .ui-layout-unit-content  {background-color: darkgreen}
+        </style>
+            <title>GameStorm</title>
     </h:head>
-
     <f:view contentType="text/html">
-        <h:body>
-            <p:layout fullPage="true">
+        <h:body style="background-color:darkgreen">
+            <p:layout fullPage="true" >
 
-                <div id="top" class="top">
-                    <ui:insert name="top">Top</ui:insert>
-                    <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="false">
+                <div id="top" class="top" >
+                    
+                    <p:layoutUnit position="north" size="70" resizable="false" closable="true" collapsible="false" style="background-color:darkgreen">
+                        <center style="font-size: 38px ; color: #ffffff;background-color:darkgreen">
                         GAMESTORM
+                        </center>
                     </p:layoutUnit>
                 </div>
                 <div>
-                    <div id="left">
-                        <p:layoutUnit position="west" size="220" header="Menú" collapsible="false">
+                    <div id="left" >
+                        <p:layoutUnit position="west" size="220" header="Menú" collapsible="false" style="background-color:darkgreen">
                             <p:menu>
 
                                 <p:menuitem value="Registrar Juego" url="RegistrarJuego.xhtml" />
-                                <p:menuitem value="Editar información de Juego" url="" />
+                                <p:menuitem value="Editar información de Juego" url="EditarInformacionJuego.xhtml" />
                                 <p:menuitem value="Registrar empleados" url="RegistrarEmpleado.xhtml" />
                                 <p:menuitem value="Administrar empleados" url="AdministrarEmpleado.xhtml" />
                                 <p:menuitem value="Apartados" url="Apartados.xhtml" />
-
+                                
                             </p:menu>
                         </p:layoutUnit>
                     </div>
                     <div id="content" class="left_content">
 
-                        <p:layoutUnit position="center">
+                        <p:layoutUnit position="center" >
                             <ui:insert name="content">
                                 <p:panel>
                                     <img src="imagenes/MuñecosVideojuegos.jpg" width="1100" height="507" alt="MuñecosVideojuegos"/>

@@ -7,12 +7,14 @@ package controladores;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.RequestScoped;
 import modelo.Juego;
 import org.primefaces.model.UploadedFile;
+import org.primefaces.event.FileUploadEvent;
 import servicios.ServicioJuego;
 
 /**
@@ -34,6 +36,15 @@ public class controladorJuego implements Serializable {
     private String linkVideo;
     private String genero;
     private String empresaDesarrolladora;
+    private Juego juego;
+
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
 
     public Integer getIdJuego() {
         return idJuego;
@@ -130,6 +141,7 @@ public class controladorJuego implements Serializable {
     public void registrarJuego() {
 
         Juego juego = new Juego();
+
         juego.setNombreJuego(nombreJuego);
         juego.setConsola(consola);
         juego.setDescripcion(descripcion);
@@ -141,10 +153,11 @@ public class controladorJuego implements Serializable {
         juego.setPromedio(0);
         juego.setStock(stock);
 
+        System.out.println("Archivo seleccionado " + imagen.getFileName() + " tamaño " + imagen.getSize());
         ServicioJuego servicio = new ServicioJuego();
         servicio.create(juego);
-        File imagenEnvio = new File(imagen.getFileName());
-       // servicio.subirImagen(imagenEnvio,"1");
+        // File imagenEnvio = new File(imagen.getFileName());
+        // servicio.subirImagen(imagenEnvio,"1");
 
         this.nombreJuego = "";
         this.descripcion = "";
@@ -158,4 +171,50 @@ public class controladorJuego implements Serializable {
         this.empresaDesarrolladora = "";
     }
 
+    public List<Juego> getObtenerJuegos() {
+        List<Juego> juegos;
+        ServicioJuego servicios = new ServicioJuego();
+        juegos = servicios.findAll();
+        return juegos;
+    }
+
+    public void subirFoto(FileUploadEvent event) {
+        UploadedFile archivo = event.getFile();
+        
+        
+    }
+
+    public void editarJuego() {
+
+    nombreJuego = juego.getNombreJuego();
+    descripcion = juego.getDescripcion();
+    promedio = juego.getPromedio();
+    stock = juego.getStock();
+    precio = juego.getPrecio();
+    consola = juego.getConsola();
+    linkVideo = juego.getLinkVideo();
+    genero = juego.getGenero();
+    empresaDesarrolladora = juego.getEmpresaDesarrolladora();
+
+}
+
+    public void guardarCambiosJuego(){
+    ServicioJuego servicio = new ServicioJuego();
+    
+    juego.setNombreJuego(nombreJuego);
+    juego.setDescripcion(descripcion);
+    juego.setConsola(consola);
+    juego.setEmpresaDesarrolladora(empresaDesarrolladora);
+    juego.setPromedio(promedio);
+    juego.setPrecio(precio);
+    juego.setStock(stock);
+    juego.setLinkVideo(linkVideo);
+    juego.setGenero(genero);
+    
+    servicio.edit(juego, juego.getIdJuego());
+    
+    
+    }
+    
+    
 }
