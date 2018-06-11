@@ -6,12 +6,17 @@
 package controladores;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import modelo.Juego;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.event.FileUploadEvent;
@@ -179,42 +184,70 @@ public class controladorJuego implements Serializable {
     }
 
     public void subirFoto(FileUploadEvent event) {
+        String ruta;
         UploadedFile archivo = event.getFile();
-        
-        
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+
+       // ruta = ec.getRealPath("/");
+      //  String arr[] = ruta.split(File.separator);
+        String rutaNueva = "C:\\Users\\irdev\\OneDrive\\Documentos\\GitHub\\GameStormSystem\\GameStormServidor\\web\\imagenesJuegos";
+//        for (int i = 0; i < arr.length - 3; i++) {
+//            rutaNueva = rutaNueva + arr[i] + File.separator;
+//        }
+//        
+//        rutaNueva = rutaNueva+"GameStormServidor"+File.separator+"web"+File.separator+"imagenesJuegos";
+//                
+//
+//        System.out.println(rutaNueva);
+
+        try {
+            FileInputStream entrada = (FileInputStream) archivo.getInputstream();
+            FileOutputStream salida = new FileOutputStream(rutaNueva);
+
+            byte[] buffer = new byte[(int) archivo.getSize()];
+            int contador = 0;
+
+            while ((contador = entrada.read(buffer)) != -1) {
+                salida.write(buffer, 0, contador);
+            }
+
+            entrada.close();
+            salida.close();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void editarJuego() {
 
-    nombreJuego = juego.getNombreJuego();
-    descripcion = juego.getDescripcion();
-    promedio = juego.getPromedio();
-    stock = juego.getStock();
-    precio = juego.getPrecio();
-    consola = juego.getConsola();
-    linkVideo = juego.getLinkVideo();
-    genero = juego.getGenero();
-    empresaDesarrolladora = juego.getEmpresaDesarrolladora();
+        nombreJuego = juego.getNombreJuego();
+        descripcion = juego.getDescripcion();
+        promedio = juego.getPromedio();
+        stock = juego.getStock();
+        precio = juego.getPrecio();
+        consola = juego.getConsola();
+        linkVideo = juego.getLinkVideo();
+        genero = juego.getGenero();
+        empresaDesarrolladora = juego.getEmpresaDesarrolladora();
 
-}
-
-    public void guardarCambiosJuego(){
-    ServicioJuego servicio = new ServicioJuego();
-    
-    juego.setNombreJuego(nombreJuego);
-    juego.setDescripcion(descripcion);
-    juego.setConsola(consola);
-    juego.setEmpresaDesarrolladora(empresaDesarrolladora);
-    juego.setPromedio(promedio);
-    juego.setPrecio(precio);
-    juego.setStock(stock);
-    juego.setLinkVideo(linkVideo);
-    juego.setGenero(genero);
-    
-    servicio.edit(juego, juego.getIdJuego());
-    
-    
     }
-    
-    
+
+    public void guardarCambiosJuego() {
+        ServicioJuego servicio = new ServicioJuego();
+
+        juego.setNombreJuego(nombreJuego);
+        juego.setDescripcion(descripcion);
+        juego.setConsola(consola);
+        juego.setEmpresaDesarrolladora(empresaDesarrolladora);
+        juego.setPromedio(promedio);
+        juego.setPrecio(precio);
+        juego.setStock(stock);
+        juego.setLinkVideo(linkVideo);
+        juego.setGenero(genero);
+
+        servicio.edit(juego, juego.getIdJuego());
+
+    }
+
 }

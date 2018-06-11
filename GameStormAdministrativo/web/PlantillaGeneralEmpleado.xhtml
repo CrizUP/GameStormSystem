@@ -11,25 +11,25 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
         
         <style>
-            .ui-layout-unit-content  {background-color: darkgreen}
+            .ui-layout-unit-content  {background-color: #0E5616}
         </style>
             <title>GameStorm</title>
     </h:head>
-    <f:view contentType="text/html">
-        <h:body style="background-color:darkgreen">
+    <f:view contentType="text/html">    
+        <h:body style="background-color:#0E5616">
             <p:layout fullPage="true" >
 
                 <div id="top" class="top" >
                     
-                    <p:layoutUnit position="north" size="70" resizable="false" closable="true" collapsible="false" style="background-color:darkgreen">
-                        <center style="font-size: 38px ; color: #ffffff;background-color:darkgreen">
+                    <p:layoutUnit position="north" size="70" resizable="false" closable="true" collapsible="false" style="background-color:#0E5616">
+                        <center style="font-size: 38px ; color: #ffffff;background-color:#0E5616">
                         GAMESTORM
                         </center>
                     </p:layoutUnit>
                 </div>
                 <div>
                     <div id="left" >
-                        <p:layoutUnit position="west" size="220" header="Menú" collapsible="false" style="background-color:darkgreen">
+                        <p:layoutUnit position="west" size="220" header="Menú" collapsible="false" style="background-color:#0E5616">
                             <p:menu>
 
                                 <p:menuitem value="Registrar Juego" url="RegistrarJuego.xhtml" />
@@ -43,9 +43,9 @@
                     </div>
                     <div id="content" class="left_content">
 
-                        <p:layoutUnit position="center" >
+                        <p:layoutUnit position="center" style="background-color:#0E5616" >
                             <ui:insert name="content">
-                                <p:panel>
+                                <p:panel style="background-color:#0E5616">
                                     <img src="imagenes/MuñecosVideojuegos.jpg" width="1100" height="507" alt="MuñecosVideojuegos"/>
                                 </p:panel>
                             </ui:insert>
