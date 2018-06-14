@@ -5,4 +5,36 @@
     <string name="contrasena">Contraseña</string>
     <string name="iniciar">INICIAR</string>
     <string name="title_activity_pantalla_principal">PantallaPrincipalActivity</string>
+    <string name="titulAlert">Error</string>
+    <string name="mensajeAlert">El usuario y la contraseña no coinciden</string>
+    <string name="OK">OK</string>
+    <string name="intenta">Intentalo de nuevo</string>
+    <string name="mensajeAlert2">Llena todos los campos</string>
+    <string name="precio">$</string>
+    <string name="btnApartar">Apartar</string>
+    <string name="trailer">Trailer del juego:</string>
+    <string name="Genero">Genero</string>
+    <string name="Consola">Consola</string>
+    <string name="Desarrolladora">Desarrolladores</string>
+    <string name="puntuacion">Puntuacion:</string>
+    <string name="noConexion">No hay conexión con el servidor</string>
+    <string name="noCuenta">Registrate aquí!</string>
+    <string name="bienvenido"> ¡Bienvenido a GameStorm! </string>
+    <string name="nombre">Nombres</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="correo">Correo</string>
+    <string name="telefono">Teléfono</string>
+    <string name="registrar">Registrar</string>
+    <string name="registroExitoso">Registrado!</string>
+    <string name="msjExitoso">Ahora formas parte de GameStorm!</string>
+    <string name="unidades">Unidades</string>
+    <string-array name="sexos">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
+    <string name="sexo">Sexo</string>
+    <string name="pedidoExitoso">Tu pedido ha sido registrado</string>
+    <string name="error">Error</string>
+
+
 </resources>

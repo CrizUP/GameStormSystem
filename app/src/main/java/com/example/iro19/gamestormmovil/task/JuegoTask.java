@@ -1,8 +1,13 @@
 package com.example.iro19.gamestormmovil.task;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.ListView;
 
+import com.example.iro19.gamestormmovil.JuegoAdaptador;
+import com.example.iro19.gamestormmovil.PantallaPrincipalActivity;
+import com.example.iro19.gamestormmovil.R;
 import com.example.iro19.gamestormmovil.negocio.Juego;
 
 import org.json.JSONArray;
@@ -16,23 +21,22 @@ import java.net.URL;
 import java.util.List;
 
 public class JuegoTask extends AsyncTask<Void, Void, Boolean> {
-
+    private boolean resultado;
     private List<Juego> juegos;
     private ListView listaJuegos;
+    private Context context;
 
-    public JuegoTask(List<Juego> juegos, ListView listaJuegos) {
+    public JuegoTask(List<Juego> juegos, ListView listaJuegos, Context context) {
         this.juegos = juegos;
         this.listaJuegos = listaJuegos;
-    }
-
-    public JuegoTask(){
-
+        this.context = context;
     }
 
     @Override
     protected Boolean doInBackground(Void... voids) {
         try{
-            URL url = new URL("http://10.40.7.28:8080/GameStorm/webresources/modelo.juego");
+            //URL url = new URL("http://192.168.43.184:8080/GameStormServidor/webresources/modelo.juego");
+            URL url = new URL("http://192.168.100.14:8080/GameStormServidor/webresources/modelo.juego");
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestProperty("Content-Type", "application/json");
             conexion.setRequestProperty("Accept", "application/json");
@@ -55,18 +59,23 @@ public class JuegoTask extends AsyncTask<Void, Void, Boolean> {
                 juegos.add(new Juego(jsonJuego));
             }
 
+            if(cadena != null){
+                resultado = true;
+            }else{
+                resultado = false;
+            }
+
         }catch(Exception ex){
 
         }
-        return false;
+        return resultado;
     }
 
     @Override
     protected void onPostExecute(Boolean aBoolean) {
-        if(aBoolean){
-            listaJuegos.invalidateViews();
-        }else{
-
-        }
+        super.onPostExecute(aBoolean);
+        JuegoAdaptador lista = new JuegoAdaptador(context, R.layout.activity_juego ,juegos);
+        listaJuegos.setAdapter(lista);
+        listaJuegos.invalidateViews();
     }
 }

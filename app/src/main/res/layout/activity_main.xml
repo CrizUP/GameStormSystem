@@ -130,4 +130,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.812" />
 
+    <Button
+        android:id="@+id/btnRegistrar"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/color1"
+        android:onClick="pantallaRegistrar"
+        android:text="@string/noCuenta"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/btnIniciar"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="@+id/btnIniciar"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciar" />
+
 </android.support.constraint.ConstraintLayout>
