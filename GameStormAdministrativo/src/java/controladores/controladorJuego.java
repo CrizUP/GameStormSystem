@@ -145,24 +145,22 @@ public class controladorJuego implements Serializable {
 
     public void registrarJuego() {
 
-        Juego juego = new Juego();
+        Juego juegoNuevo = new Juego();
 
-        juego.setNombreJuego(nombreJuego);
-        juego.setConsola(consola);
-        juego.setDescripcion(descripcion);
-        juego.setEmpresaDesarrolladora(empresaDesarrolladora);
-        juego.setGenero(genero);
-        juego.setLinkVideo(linkVideo);
-        juego.setImagen("sin imagen");
-        juego.setPrecio(precio);
-        juego.setPromedio(0);
-        juego.setStock(stock);
+        juegoNuevo.setNombreJuego(nombreJuego);
+        juegoNuevo.setConsola(consola);
+        juegoNuevo.setDescripcion(descripcion);
+        juegoNuevo.setEmpresaDesarrolladora(empresaDesarrolladora);
+        juegoNuevo.setGenero(genero);
+        juegoNuevo.setLinkVideo(linkVideo);
+        juegoNuevo.setImagen("sin imagen");
+        juegoNuevo.setPrecio(precio);
+        juegoNuevo.setPromedio(0);
+        juegoNuevo.setStock(stock);
 
-        System.out.println("Archivo seleccionado " + imagen.getFileName() + " tamaño " + imagen.getSize());
+        //System.out.println("Archivo seleccionado " + imagen.getFileName() + " tamaño " + imagen.getSize());
         ServicioJuego servicio = new ServicioJuego();
-        servicio.create(juego);
-        // File imagenEnvio = new File(imagen.getFileName());
-        // servicio.subirImagen(imagenEnvio,"1");
+        servicio.create(juegoNuevo);
 
         this.nombreJuego = "";
         this.descripcion = "";
@@ -184,39 +182,30 @@ public class controladorJuego implements Serializable {
     }
 
     public void subirFoto(FileUploadEvent event) {
-        String ruta;
-        UploadedFile archivo = event.getFile();
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
-       // ruta = ec.getRealPath("/");
-      //  String arr[] = ruta.split(File.separator);
-        String rutaNueva = "C:\\Users\\irdev\\OneDrive\\Documentos\\GitHub\\GameStormSystem\\GameStormServidor\\web\\imagenesJuegos";
-//        for (int i = 0; i < arr.length - 3; i++) {
-//            rutaNueva = rutaNueva + arr[i] + File.separator;
-//        }
-//        
-//        rutaNueva = rutaNueva+"GameStormServidor"+File.separator+"web"+File.separator+"imagenesJuegos";
-//                
-//
-//        System.out.println(rutaNueva);
+        UploadedFile imagenSeleccionada = event.getFile();
+
+        List<Juego> juegoConUltimo = getObtenerJuegos();
+        Juego ultimoJuego = juegoConUltimo.get(juegoConUltimo.size() - 1);
+
+        String rutaNueva = "C:\\Users\\Cris_\\Documents\\GitHub\\GameStormSystem\\GameStormServidor\\web\\imagenesJuegos\\";
 
         try {
-            FileInputStream entrada = (FileInputStream) archivo.getInputstream();
-            FileOutputStream salida = new FileOutputStream(rutaNueva);
-
-            byte[] buffer = new byte[(int) archivo.getSize()];
-            int contador = 0;
-
-            while ((contador = entrada.read(buffer)) != -1) {
-                salida.write(buffer, 0, contador);
+            FileOutputStream salida;
+            try (FileInputStream entrada = (FileInputStream) imagenSeleccionada.getInputstream()) {
+                salida = new FileOutputStream(rutaNueva + (ultimoJuego.getIdJuego()+1) + ".jpg");
+                byte[] buffer = new byte[(int) imagenSeleccionada.getSize()];
+                int contador = 0;
+                while ((contador = entrada.read(buffer)) != -1) {
+                    salida.write(buffer, 0, contador);
+                }
             }
-
-            entrada.close();
             salida.close();
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
     }
 
     public void editarJuego() {

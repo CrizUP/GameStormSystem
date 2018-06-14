@@ -38,8 +38,6 @@
                 </p:selectOneMenu>
                 <br></br>
                 <br></br>
-
-
                 <label>Genero:</label><br></br>
                 <p:selectOneMenu id="campoGeneros" value="#{controladorJuego.genero}" style="width: 240px">
                     <f:selectItem itemLabel="Genero" itemValue="Default"/>
@@ -51,7 +49,6 @@
                     <f:selectItem itemLabel="Aventura" itemValue="Aventura"/>
                     <f:selectItem itemLabel="Simulación" itemValue="Simulación"/>
                     <f:selectItem itemLabel="Otro" itemValue="Otro"/>
-
                 </p:selectOneMenu>
                 <br></br>
                 <br></br>
@@ -67,17 +64,18 @@
                 <p:inputTextarea id="campoDescripcion" rows="6" cols="33" value="#{controladorJuego.descripcion}"/>
                 <br></br>
                 <br></br>
-                    <p:growl id="messages" showDetail="true" ></p:growl>
-                    <p:fileUpload id="campoImagen" fileUploadListener="#{controladorJuego.subirFoto}" auto="true" mode="advanced" sizeLimit="100000" allowTypes="/(\.|\/)(jpg)$/" multiple="false"  ></p:fileUpload>         
+                <p:growl id="messages" showDetail="true" />                
                 <br></br>
                 <br></br>
                 <div class="form-group">
-                    <p:commandButton id="botonRegistrar" value="Registrar"   actionListener="#{controladorJuego.registrarJuego()}" update="formularioRegistroJuego"></p:commandButton>
+                    <p:commandButton id="botonRegistrar" value="Registrar" actionListener="#{controladorJuego.registrarJuego()}" update="formularioRegistroJuego" />
                 </div>
             </center>
 
         </h:form>
-
+        <h:form>
+            <p:fileUpload id="campoImagen" fileUploadListener="#{controladorJuego.subirFoto}" auto="true" mode="advanced" sizeLimit="10000000" allowTypes="/(\.|\/)(jpg)$/" multiple="false" />       
+        </h:form>
 
     </ui:define>
 
